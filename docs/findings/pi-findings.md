@@ -57,4 +57,13 @@
 - The catalog's architectures are configurations and process topologies around Pi. Planner/executor and actor/verifier require a controller-managed handoff even though every worker remains an ordinary Pi process.
 - JSON event streams were sufficient to reduce six harness runs into completion, tool, error, evidence, latency, and token metrics. Tool-triggered termination means a verified tool result can be the terminal successful outcome without a later assistant text message.
 
+## 2026-09-09 — Labs 16–21 external architecture and boundary placement
+
+- Python controlled Pi cleanly through strict RPC JSONL: prompt acceptance was asynchronous, `agent_settled` marked the safe idle boundary, and later state/text commands returned the workflow-facing result.
+- SQLite task records supplied pause/resume, attempts, leases, checkpoints, blockers, external events, and crash recovery without duplicating Pi's internal agent loop. An expired first lease recovered and the second claim completed.
+- Three independent Pi roles coordinated through a blackboard using atomic claims, dependency activation, shared observations, artifacts, and explicit conflicts. No parent Pi needed to remain alive.
+- Nine orchestration patterns differed in external state and communication topology. The same Pi worker abstraction fit hub-and-spoke, sequential, cyclic, fan-out/fan-in, shared-state, queue, and routing graphs.
+- Two RPC workers ran concurrently with distinct sessions and streamed results into one external database. This supports external process parallelism; it does not establish that multiple processes may safely write one Pi session.
+- The tiny Python loop needed direct provider configuration, TLS trust handling, request compatibility fields, runtime argument checks, workspace boundary enforcement, tool-call parsing, continuation messages, a turn cap, and usage accounting for just one provider and one tool.
+
 Do not record API keys or authorization headers here.

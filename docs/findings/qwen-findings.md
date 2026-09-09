@@ -30,3 +30,10 @@ Future entries should state the exact harness configuration, prompt, observation
 - The verification configuration first omitted the fixture's trailing newline, received a content-mismatch failure, retried with the exact content, and passed. It completed with two tool calls, one failed call, and one observed recovery.
 - No successful run made an unsupported success claim under the experiment's operational definition: a correct answer required a successful read, verified receipt, or child-read observation.
 - This is a three-task deterministic smoke suite, not a performance ranking. It demonstrates that control flow and evidence requirements produce measurable differences while the model stays fixed.
+
+## 2026-09-09 — Python control, concurrency, and direct loop
+
+- Qwen returned each exact controller token through Pi RPC in Labs 16–20, including three blackboard roles and two simultaneously active boundary-probe workers.
+- The process-concurrency probe produced the expected independent results and distinct Pi session IDs. It tested functional isolation, not throughput or quality under sustained load.
+- In the direct Lab 21 API loop, Qwen emitted a schema-valid `read_file` call on the first turn and returned `TINY_OK` after the tool result on the second turn.
+- The direct result matches Pi's basic two-turn tool behavior from Lab 2, while the implementation comparison shows that the matching happy path says little about sessions, lifecycle, compatibility, cancellation, policy, or recovery.

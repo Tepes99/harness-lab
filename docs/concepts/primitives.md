@@ -34,8 +34,13 @@ This is a living catalog. API details are pinned to the installed `@earendil-wor
 | Output mode | Adapt the same runtime events to a consumer | agent events → TUI, text, JSONL, or RPC | Pi mode layer; process lifetime | Human use, capture, Python control. Presentation should not be confused with reasoning. |
 | Receipt | Structured observation supporting a claim | environment event → evidence record | Harness extension/external store | Verification and evaluation. A receipt proves only what its observation actually covers. |
 | Worker process | One configured Pi instance | task + harness config → result + events | External orchestrator and child Pi | Sub-agents, pipelines. Isolation, timeout, transport, and cost need explicit handling. |
+| RPC controller | Drive a headless Pi worker over strict JSONL | commands → responses + asynchronous events | External process; one or more worker lifetimes | Python controllers and IDEs. Must frame LF records, handle asynchronous settling, timeouts, and cleanup. |
+| Durable task record | Persist workflow truth independently of an agent conversation | task, status, attempts, blocker, result → schedulable state | External database; spans processes and sessions | Autonomous runners. Needs migrations, idempotency, and explicit terminal states. |
+| Lease | Atomically grant temporary ownership of ready work | task + worker + expiry → exclusive claim or none | External transactional scheduler | Queues and crash recovery. Expiry can duplicate side effects unless execution is idempotent. |
+| Blackboard | Shared durable facts and work visible to independent workers | observations, claims, tasks, artifacts → activations/conflicts | External transactional store | Loosely coupled specialists. Stale facts, contention, cycles, and context growth need policy. |
+| Activation rule | Decide when shared-state work becomes eligible | durable state change → ready task/worker | External scheduler or blackboard | Dependency graphs and event-driven agents. Hidden or cyclic rules can stall the system. |
+| Orchestration topology | Define worker, state, and communication ownership | task graph + worker configs → dispatch/result graph | External controller | Pipelines, map-reduce, routers, critics. Role prompts alone do not create a different topology. |
 
 ## Composition test
 
 When naming a new feature, rewrite it as existing primitives first. Add a primitive only if it has an independent contract, lifecycle, and reuse across multiple features. Prompt wording alone is model context; it is not enforcement, state, or orchestration.
-

@@ -19,4 +19,4 @@ Install the editor/type-checking dependencies with `npm install`, then run `npm 
 
 ## Current checkpoint
 
-Labs 1–15 are implemented. The current milestone includes policy, plan mode, verification, observability, skills, compaction, two memory placements, bounded sub-agents, eleven harness architecture cards, and a six-configuration same-model benchmark. The next lab places a Python controller around Pi's supported process/RPC surface.
+Labs 1–21 are implemented, completing the planned roadmap after Phase 0 orientation. The repository now includes Python RPC control, durable recovery, a transactional blackboard, nine orchestration topology comparisons, an evidence-backed Pi boundary catalog, and a deliberately tiny direct model/tool loop showing what Pi saves us from rebuilding.

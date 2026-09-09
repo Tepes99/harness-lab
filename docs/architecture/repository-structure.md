@@ -13,10 +13,11 @@ The structure follows learning order while giving reusable artifacts stable home
 ├── labs/                   # guided, runnable learning units
 ├── extensions/             # reusable Pi extensions promoted from labs
 ├── harnesses/              # composed Pi configurations (added when exercised)
+├── orchestrations/         # state/communication topology cards and graphs
 ├── experiments/            # controlled comparisons and raw-analysis code
 ├── evals/                  # tasks, scorers, and result schemas
 ├── fixtures/               # general small deterministic experiment inputs
-├── python/                 # later external orchestration and services
+├── python/                 # external controllers, durable state, and educational loop
 └── scripts/                # repository-wide utilities
 ```
 
