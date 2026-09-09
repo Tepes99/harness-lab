@@ -19,4 +19,4 @@ Install the editor/type-checking dependencies with `npm install`, then run `npm 
 
 ## Current checkpoint
 
-Labs 1–3 are implemented. Continue in numerical order; each lab assumes the vocabulary and observations from the previous one.
+Labs 1–4 are implemented. Continue in numerical order; each lab assumes the vocabulary and observations from the previous one.

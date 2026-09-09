@@ -157,4 +157,19 @@ This resembles periodically checking a Python cancellation event. It cooperates 
 
 A successful tool returns content for the model plus optional `details` for rendering, state, or audit code. To make Pi mark a tool result as an error, throw an `Error`; returning text that begins with “Error” is still a successful tool result.
 
-Later labs add state restoration and context-event transformations. Child processes and more advanced generics should wait until a lab actually uses them.
+## State reconstruction and runtime guards
+
+Session JSON is runtime data, even when this repository originally wrote it. Casts such as `entry.data as CounterState` silence the compiler but do not verify old or corrupt data. Check discriminator and field types before restoring:
+
+```typescript
+function isCounterState(value: unknown): value is CounterState {
+  return typeof value === "object" && value !== null &&
+    "count" in value && typeof value.count === "number";
+}
+```
+
+The `value is CounterState` return type is a user-defined type guard. When it returns true, TypeScript narrows `value` inside the calling branch. This resembles validating a Python dictionary before constructing a typed domain object.
+
+State reconstructed from an append-only branch should use a new object rather than retain mutable references from parsed session entries. Persist a `schemaVersion` so later code can migrate older snapshots deliberately.
+
+Later labs add context-event transformations. Child processes and more advanced generics should wait until a lab actually uses them.

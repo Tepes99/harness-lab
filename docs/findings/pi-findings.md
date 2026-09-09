@@ -26,4 +26,11 @@
 - Tool ordering was `tool_execution_start → tool_call → tool_result → tool_execution_end → toolResult message_end`. This separates Pi’s preflight interception from executor completion and message finalization.
 - `agent_end` was followed by `agent_settled`, then `session_shutdown`. Status integrations should use `agent_settled` when they care that automatic continuations are exhausted.
 
+## 2026-09-09 — Lab 4 state restoration
+
+- Two separate Pi processes used the same explicit session. Their random extension instance IDs differed, proving module-local state restarted.
+- The first process restored the default count zero and persisted count seven. The second process restored count seven from the active branch before executing its read call.
+- The session contained both versioned tool-result details and namespaced custom entries. Neither the custom-entry namespace nor ephemeral instance IDs appeared in captured provider payloads.
+- `getBranch()` included Pi metadata entries in addition to conversational messages, reinforcing that session storage and model context are different projections of the same append-only history.
+
 Do not record API keys or authorization headers here.
