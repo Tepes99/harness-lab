@@ -19,4 +19,11 @@
 - Tool `content` and `details` both appeared in Pi’s event stream. The textual content is the part meant to continue into model context; details remain structured harness/session metadata.
 - The tool executor returning successfully resulted in `isError: false`. Pi’s documented error contract requires the executor to throw for `isError: true`.
 
+## 2026-09-09 — Lab 3 lifecycle
+
+- One user request containing one tool call produced one agent run, two model turns, and 28 summarized lifecycle events including session startup and shutdown.
+- The first `context` event contained only the user message. The second contained user, assistant tool-call, and tool-result messages.
+- Tool ordering was `tool_execution_start → tool_call → tool_result → tool_execution_end → toolResult message_end`. This separates Pi’s preflight interception from executor completion and message finalization.
+- `agent_end` was followed by `agent_settled`, then `session_shutdown`. Status integrations should use `agent_settled` when they care that automatic continuations are exhausted.
+
 Do not record API keys or authorization headers here.
