@@ -12,7 +12,8 @@
     "lab:05": "bash labs/05-context/run.sh",
     "lab:06": "bash labs/06-tool-policy/run.sh",
     "lab:07": "bash labs/07-plan-mode/run.sh",
-    "lab:08": "bash labs/08-verification/run.sh"
+    "lab:08": "bash labs/08-verification/run.sh",
+    "lab:09": "bash labs/09-observability/run.sh"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.85.1",
