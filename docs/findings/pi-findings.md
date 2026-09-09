@@ -33,4 +33,11 @@
 - The session contained both versioned tool-result details and namespaced custom entries. Neither the custom-entry namespace nor ephemeral instance IDs appeared in captured provider payloads.
 - `getBranch()` included Pi metadata entries in addition to conversational messages, reinforcing that session storage and model context are different projections of the same append-only history.
 
+## 2026-09-09 — Lab 5 context pipeline
+
+- Baseline and injected runs had identical 177-character system prompts, including Pi’s appended cwd.
+- The baseline `context` event contained one user message. The injected run contained that user message plus a `custom` message labeled `lab-05-temporary-context`.
+- The OpenAI-compatible provider adapter serialized the custom message as an additional `user` role. Extension-only `details` did not appear in that provider message.
+- Provider-reported input usage increased from 78 to 95 tokens after adding the short message. Character-based estimates remain useful for comparison but are not tokenizer-exact counts.
+
 Do not record API keys or authorization headers here.

@@ -15,3 +15,9 @@ Future entries should state the exact harness configuration, prompt, observation
 - With exactly `structured_echo` and `workspace_inventory` exposed, Qwen selected the explicitly requested tool in both controlled cases and produced schema-valid arguments on the first attempt.
 - After each tool result, Qwen produced a grounded final answer in the second model turn. For the inventory case it accurately repeated the observed counts: 9 files and 2 directories at the time of the run.
 - This shows correct behavior for strong, explicit tool instructions. It does not yet measure ambiguous selection, malformed arguments, or recovery from tool failure.
+
+## 2026-09-09 — Lab 5 controlled context injection
+
+- With the same model, system prompt, user prompt, no tools, and no session, Qwen returned `NO_MARKER` in the baseline.
+- Adding one temporary extension message changed the response to `INJECTION_SEEN`.
+- The causal input difference is visible in both Pi’s context event and final provider payload. This is a clean demonstration that harness context can alter model behavior; it is not evidence that prompt instructions enforce policy.

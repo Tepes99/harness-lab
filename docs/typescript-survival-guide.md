@@ -172,4 +172,19 @@ The `value is CounterState` return type is a user-defined type guard. When it re
 
 State reconstructed from an append-only branch should use a new object rather than retain mutable references from parsed session entries. Persist a `schemaVersion` so later code can migrate older snapshots deliberately.
 
-Later labs add context-event transformations. Child processes and more advanced generics should wait until a lab actually uses them.
+## Non-destructive context transformation
+
+Pi gives `context` handlers a deep copy of the message list. Return a new array when changing it:
+
+```typescript
+pi.on("context", (event) => {
+  const retained = event.messages.filter((message) => shouldKeep(message));
+  return { messages: retained };
+});
+```
+
+Array methods such as `map`, `filter`, and spread (`[...items, newItem]`) parallel Python list comprehensions and unpacking. A callback that returns `undefined` observes only. A callback that returns `{ messages }` changes what later hooks and the model call see, without rewriting the persisted transcript.
+
+The provider payload remains `unknown`. Recording it is safe; modifying provider-specific fields requires runtime shape checks because no universal interface guarantees `messages`, `tools`, or sampling fields.
+
+Child processes and more advanced generics should wait until a lab actually uses them.
