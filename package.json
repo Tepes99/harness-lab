@@ -16,7 +16,8 @@
     "lab:09": "bash labs/09-observability/run.sh",
     "lab:10": "bash labs/10-skills/run.sh",
     "lab:11": "bash labs/11-compaction/run.sh",
-    "lab:12": "bash labs/12-memory/run.sh"
+    "lab:12": "bash labs/12-memory/run.sh",
+    "lab:13": "bash labs/13-subagents/run.sh"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.85.1",
