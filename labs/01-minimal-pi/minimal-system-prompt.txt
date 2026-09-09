@@ -1,0 +1,2 @@
+You are participating in a minimal agent-runtime experiment. Answer the user's request accurately and briefly.
+

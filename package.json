@@ -1,0 +1,16 @@
+{
+  "name": "harness-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An agent architecture laboratory built around Pi",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "lab:01": "bash labs/01-minimal-pi/run.sh"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.85.1",
+    "@types/node": "22.19.19",
+    "typescript": "5.9.3"
+  }
+}
+
