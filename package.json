@@ -20,7 +20,8 @@
     "lab:13": "bash labs/13-subagents/run.sh",
     "lab:14": "bash labs/14-harness-catalog/run.sh",
     "lab:15": "bash labs/15-same-model-harness/run.sh",
-    "lab:16": "bash labs/16-python-controller/run.sh"
+    "lab:16": "bash labs/16-python-controller/run.sh",
+    "lab:17": "bash labs/17-durable-runner/run.sh"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.85.1",
