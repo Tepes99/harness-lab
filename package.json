@@ -23,7 +23,8 @@
     "lab:16": "bash labs/16-python-controller/run.sh",
     "lab:17": "bash labs/17-durable-runner/run.sh",
     "lab:18": "bash labs/18-blackboard/run.sh",
-    "lab:19": "bash labs/19-orchestration-patterns/run.sh"
+    "lab:19": "bash labs/19-orchestration-patterns/run.sh",
+    "lab:20": "bash labs/20-pi-boundaries/run.sh"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.85.1",
