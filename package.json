@@ -10,7 +10,8 @@
     "lab:03": "bash labs/03-lifecycle/run.sh",
     "lab:04": "bash labs/04-extension-state/run.sh",
     "lab:05": "bash labs/05-context/run.sh",
-    "lab:06": "bash labs/06-tool-policy/run.sh"
+    "lab:06": "bash labs/06-tool-policy/run.sh",
+    "lab:07": "bash labs/07-plan-mode/run.sh"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.85.1",

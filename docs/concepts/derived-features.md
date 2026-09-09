@@ -5,6 +5,7 @@ Derived features are named compositions. The equations below are design hypothes
 ```text
 Plan Mode
 = command
++ startup flag
 + extension-owned mode state
 + system-prompt/context mutation
 + tool policy
@@ -63,4 +64,3 @@ Blackboard System
 ```
 
 The key diagnostic is to change one term while holding the model fixed. A “planner” created only by renaming the system prompt is a prompt-role experiment. A planner/executor architecture exists when control flow, state, context, or permissions differ between phases.
-
