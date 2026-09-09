@@ -12,12 +12,11 @@ The primary experimental model is the locally hosted `qwen3.8-27b-fp8`, exposed 
 
 1. Read the [curriculum](docs/curriculum/roadmap.md) and [repository architecture](docs/architecture/repository-structure.md).
 2. Learn the vocabulary in the [primitive taxonomy](docs/concepts/primitives.md).
-3. Run [Lab 1](labs/01-minimal-pi/README.md).
+3. Run the labs in order, beginning with [Lab 1](labs/01-minimal-pi/README.md).
 4. Record surprises in the Pi and Qwen findings logs.
 
 Install the editor/type-checking dependencies with `npm install`, then run `npm run check`. Pi itself is currently installed globally and is deliberately treated as the runtime rather than copied into this repository.
 
 ## Current checkpoint
 
-Only Phase 0 and Lab 1 are implemented. Lab 2 has intentionally not started. The next step is to run and discuss Lab 1 until the checkpoint questions can be answered from evidence.
-
+Labs 1–2 are implemented. Continue in numerical order; each lab assumes the vocabulary and observations from the previous one.

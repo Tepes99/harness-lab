@@ -103,5 +103,58 @@ try {
 
 ## Next concepts, when needed
 
-Lab 2 will add async tool executors, `Promise`, runtime schemas, optional properties, and structured error results. Abort signals, child processes, generics, and state restoration should wait until a lab actually uses them.
+## Async functions and Promises
 
+Pi tool executors are asynchronous because tools often read files, start processes, or call services:
+
+```typescript
+async function inspect(): Promise<string[]> {
+  return await readdir(".");
+}
+```
+
+This is the direct analogue of Python’s `async def`. An `async` TypeScript function always returns a `Promise<T>`, analogous to a Python coroutine that eventually produces `T`. `await` unwraps that future result or throws its rejection.
+
+## Interfaces and optional properties
+
+An interface names a compile-time object shape:
+
+```typescript
+interface Inventory {
+  files: number;
+  warning?: string;
+}
+```
+
+The `?` means `warning` may be absent. It does not fill a default or validate data at runtime.
+
+## Runtime schemas
+
+Tool arguments originate with the model, so compile-time types cannot protect the executor. Pi accepts a TypeBox schema and validates a proposed call before invoking `execute`:
+
+```typescript
+const Parameters = Type.Object(
+  { message: Type.String({ minLength: 1 }) },
+  { additionalProperties: false },
+);
+```
+
+TypeBox describes runtime JSON. Pi derives the executor’s parameter type from that schema, so one definition serves runtime validation and TypeScript.
+
+## AbortSignal
+
+Long-running tools receive an optional `AbortSignal`. Check it inside loops and throw its reason when cancellation is requested:
+
+```typescript
+if (signal?.aborted) {
+  throw signal.reason ?? new Error("Cancelled");
+}
+```
+
+This resembles periodically checking a Python cancellation event. It cooperates with cancellation; it cannot forcibly stop arbitrary synchronous work.
+
+## Structured tool results and thrown errors
+
+A successful tool returns content for the model plus optional `details` for rendering, state, or audit code. To make Pi mark a tool result as an error, throw an `Error`; returning text that begins with “Error” is still a successful tool result.
+
+Later labs add state restoration and context-event transformations. Child processes and more advanced generics should wait until a lab actually uses them.

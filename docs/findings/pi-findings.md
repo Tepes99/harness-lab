@@ -12,4 +12,11 @@
 - The first minimal run made exactly one provider request, exposed no `tools` field, and had no session file. Its payload used `stream: true`, requested usage reporting, set `store: false`, and serialized `chat_template_kwargs.enable_thinking: false` from `--thinking off`.
 - The lifecycle trace ordered the relevant events as `session_start → before_agent_start → agent_start → turn_start → context → before_provider_request → after_provider_response → turn_end → agent_end → agent_settled`. User and assistant `message_end` events occurred around the provider call as expected.
 
+## 2026-09-09 — Lab 2 custom tools
+
+- Pi serialized both enabled custom-tool schemas into the first provider request.
+- A successful tool call produced an assistant message with `stopReason: "toolUse"`, `tool_execution_start`, `tool_execution_end`, a `toolResult` message, and then a second model turn.
+- Tool `content` and `details` both appeared in Pi’s event stream. The textual content is the part meant to continue into model context; details remain structured harness/session metadata.
+- The tool executor returning successfully resulted in `isError: false`. Pi’s documented error contract requires the executor to throw for `isError: true`.
+
 Do not record API keys or authorization headers here.

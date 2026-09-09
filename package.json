@@ -5,12 +5,14 @@
   "description": "An agent architecture laboratory built around Pi",
   "scripts": {
     "check": "tsc --noEmit",
-    "lab:01": "bash labs/01-minimal-pi/run.sh"
+    "lab:01": "bash labs/01-minimal-pi/run.sh",
+    "lab:02": "bash labs/02-custom-tool/run.sh"
   },
   "devDependencies": {
+    "@earendil-works/pi-ai": "0.85.1",
     "@earendil-works/pi-coding-agent": "0.85.1",
     "@types/node": "22.19.19",
+    "typebox": "1.3.7",
     "typescript": "5.9.3"
   }
 }
-
