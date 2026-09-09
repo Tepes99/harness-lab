@@ -1,0 +1,16 @@
+{
+  "runtime": { "provider": "home-vllm", "model": "qwen3.8-27b-fp8", "thinking": "off" },
+  "harnesses": {
+    "minimal": { "tools": [], "extensions": [], "skills": [], "controlFlow": "one Pi process" },
+    "coding": { "tools": ["read", "grep", "find", "ls", "bash", "edit", "write", "submit_completion"], "extensions": ["completion-verifier"], "skills": [], "controlFlow": "one Pi process" },
+    "read-only-analyst": { "tools": ["read", "grep", "find", "ls"], "extensions": ["tool-policy"], "skills": [], "controlFlow": "one Pi process" },
+    "researcher": { "tools": ["read", "grep", "find", "ls"], "extensions": [], "skills": ["evidence-summary"], "controlFlow": "one Pi process" },
+    "planner-executor": { "tools": ["read", "grep", "find", "ls", "bash", "edit", "write"], "extensions": ["plan-mode"], "skills": [], "controlFlow": "plan session then execution session" },
+    "actor-verifier": { "tools": ["read", "grep", "find", "ls", "bash", "edit", "write", "submit_completion"], "extensions": ["completion-verifier"], "skills": [], "controlFlow": "actor session then independent verifier session" },
+    "reviewer": { "tools": ["read", "grep", "find", "ls"], "extensions": [], "skills": ["failure-boundary"], "controlFlow": "one read-only Pi process" },
+    "low-context": { "tools": ["read"], "extensions": [], "skills": [], "controlFlow": "ephemeral one-turn Pi process" },
+    "autonomous": { "tools": ["read", "grep", "find", "ls", "bash", "edit", "write", "submit_completion"], "extensions": ["completion-verifier", "telemetry"], "skills": [], "controlFlow": "external durable controller repeatedly starts bounded Pi workers" },
+    "experimental": { "tools": [], "extensions": ["context-inspector"], "skills": [], "controlFlow": "replaceable experimental composition" },
+    "multi-agent": { "tools": ["delegate_once"], "extensions": ["subagent"], "skills": [], "controlFlow": "parent Pi delegates one bounded child Pi process" }
+  }
+}
