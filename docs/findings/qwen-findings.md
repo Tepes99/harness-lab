@@ -21,3 +21,12 @@ Future entries should state the exact harness configuration, prompt, observation
 - With the same model, system prompt, user prompt, no tools, and no session, Qwen returned `NO_MARKER` in the baseline.
 - Adding one temporary extension message changed the response to `INJECTION_SEEN`.
 - The causal input difference is visible in both Pi’s context event and final provider payload. This is a clean demonstration that harness context can alter model behavior; it is not evidence that prompt instructions enforce policy.
+
+## 2026-09-09 — Same model, different harness smoke benchmark
+
+- All configurations used `home-vllm/qwen3.8-27b-fp8` with thinking off across the same three workspace-evidence tasks.
+- Minimal Pi declined to claim answers it could not inspect: 0/3 completion, zero tools, 3,197 ms total latency, 110 output tokens, and 192 input-context tokens.
+- Coding, planner/executor, actor/verifier, and multi-agent configurations each completed 3/3 with observed read evidence. Their total measured latencies were 6,437 ms, 12,504 ms, 8,477 ms, and 8,690 ms respectively in this run.
+- The verification configuration first omitted the fixture's trailing newline, received a content-mismatch failure, retried with the exact content, and passed. It completed with two tool calls, one failed call, and one observed recovery.
+- No successful run made an unsupported success claim under the experiment's operational definition: a correct answer required a successful read, verified receipt, or child-read observation.
+- This is a three-task deterministic smoke suite, not a performance ranking. It demonstrates that control flow and evidence requirements produce measurable differences while the model stays fixed.

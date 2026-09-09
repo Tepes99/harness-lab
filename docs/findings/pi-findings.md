@@ -40,4 +40,21 @@
 - The OpenAI-compatible provider adapter serialized the custom message as an additional `user` role. Extension-only `details` did not appear in that provider message.
 - Provider-reported input usage increased from 78 to 95 tokens after adding the short message. Character-based estimates remain useful for comparison but are not tokenizer-exact counts.
 
+## 2026-09-09 — Labs 6–10 composition primitives
+
+- A tool can remain registered while `tool_call` policy denies execution. This keeps capability discovery separate from authorization and produces an explicit failed tool result.
+- Plan mode required no Pi fork: a startup flag, extension state, temporary context, and tool policy produced a non-mutating planning phase.
+- A `submit_completion` tool turned a prose claim into an observable state transition. File existence and exact-content checks produced structured pass/fail receipts and could terminate the loop after success.
+- JSONL telemetry derived model-call latency, usage, tool outcomes, and run boundaries from lifecycle hooks without replacing the agent loop.
+- Equivalent evidence rules could be expressed as a system prompt, skill, extension context, or deterministic tool. Only the tool mechanically classified the supplied evidence; instructions still depended on model compliance.
+
+## 2026-09-09 — Labs 11–15 context, state, and orchestration
+
+- Pi's compaction cut point must leave complete older turns to summarize. One oversized first turn produced “nothing to compact”; moving the oversized content to the latest turn yielded four older messages, both compaction hooks, and a persisted `CompactionEntry`.
+- Project compaction settings were visible in `session_before_compact`: `reserveTokens: 1024` and `keepRecentTokens: 100`. The generated summary retained the requested codeword and unresolved requirement in this controlled run.
+- Memory worked both as extension-owned SQLite in the Pi process and as SQLite behind a small Python HTTP service. The former is simpler; the latter gives an external orchestrator independent ownership and access.
+- A custom tool can spawn Pi in JSON print mode as a bounded child worker. Disabling child extensions/tools and enforcing one delegation depth prevents recursive delegation in the working example.
+- The catalog's architectures are configurations and process topologies around Pi. Planner/executor and actor/verifier require a controller-managed handoff even though every worker remains an ordinary Pi process.
+- JSON event streams were sufficient to reduce six harness runs into completion, tool, error, evidence, latency, and token metrics. Tool-triggered termination means a verified tool result can be the terminal successful outcome without a later assistant text message.
+
 Do not record API keys or authorization headers here.

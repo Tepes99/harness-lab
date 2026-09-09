@@ -19,4 +19,4 @@ Install the editor/type-checking dependencies with `npm install`, then run `npm 
 
 ## Current checkpoint
 
-Labs 1–5 are implemented. The repository stops before Lab 6 (tool policy), leaving a clean checkpoint after context inspection and controlled injection.
+Labs 1–15 are implemented. The current milestone includes policy, plan mode, verification, observability, skills, compaction, two memory placements, bounded sub-agents, eleven harness architecture cards, and a six-configuration same-model benchmark. The next lab places a Python controller around Pi's supported process/RPC surface.

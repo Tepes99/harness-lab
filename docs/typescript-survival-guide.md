@@ -187,4 +187,14 @@ Array methods such as `map`, `filter`, and spread (`[...items, newItem]`) parall
 
 The provider payload remains `unknown`. Recording it is safe; modifying provider-specific fields requires runtime shape checks because no universal interface guarantees `messages`, `tools`, or sampling fields.
 
-Child processes and more advanced generics should wait until a lab actually uses them.
+## Child processes and event transport
+
+Labs 13 and 15 start a child Pi with `spawn` and consume its JSONL stdout. Arguments are passed as an array, so prompts remain single arguments and are not interpreted by a shell. Collect stderr separately, check the exit code, and connect Pi's `AbortSignal` to `child.kill("SIGTERM")`.
+
+An event stream is runtime data. Parse each line as JSON and test discriminators such as `event.type`, `message.role`, and content-part `type` before reading variant fields. A child's final prose and its evidence are separate outputs; Lab 15 carries both the text and a `childReadObserved` detail.
+
+## Built-in web APIs and SQLite
+
+Node supplies `fetch`, so a Pi tool can call an external memory service without another client dependency. Check `response.ok` before trusting the body and treat decoded JSON as untrusted runtime data.
+
+Recent Node versions expose SQLite as `node:sqlite`. `DatabaseSync` is suitable for the tiny serialized lab, while a concurrent service should choose explicit transaction, connection, and migration policies. Parameterized statements keep model-provided keys and values out of SQL syntax.

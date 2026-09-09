@@ -1,0 +1,26 @@
+{
+  "suite": "same-model-harness-smoke",
+  "tasks": [
+    {
+      "id": "read-evidence-token",
+      "instruction": "Read evals/fixtures/benchmark-token.txt and return only the token stored in it.",
+      "expected": "BENCH_OK",
+      "evidencePath": "evals/fixtures/benchmark-token.txt",
+      "expectedContent": "BENCH_OK\n"
+    },
+    {
+      "id": "read-json-value",
+      "instruction": "Read evals/fixtures/benchmark-record.json and return only the numeric value of the answer field.",
+      "expected": "7",
+      "evidencePath": "evals/fixtures/benchmark-record.json",
+      "expectedContent": "{\"answer\":7,\"label\":\"SEVEN\"}\n"
+    },
+    {
+      "id": "read-final-word",
+      "instruction": "Read evals/fixtures/benchmark-lines.txt and return only the final word in the file.",
+      "expected": "FINAL_WORD",
+      "evidencePath": "evals/fixtures/benchmark-lines.txt",
+      "expectedContent": "alpha\nbeta\nFINAL_WORD\n"
+    }
+  ]
+}

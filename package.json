@@ -18,7 +18,8 @@
     "lab:11": "bash labs/11-compaction/run.sh",
     "lab:12": "bash labs/12-memory/run.sh",
     "lab:13": "bash labs/13-subagents/run.sh",
-    "lab:14": "bash labs/14-harness-catalog/run.sh"
+    "lab:14": "bash labs/14-harness-catalog/run.sh",
+    "lab:15": "bash labs/15-same-model-harness/run.sh"
   },
   "devDependencies": {
     "@earendil-works/pi-ai": "0.85.1",
