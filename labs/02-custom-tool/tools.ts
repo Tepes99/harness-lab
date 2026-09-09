@@ -1,4 +1,4 @@
-import { readdir } from "node:fs/promises";
+import { readdir, realpath } from "node:fs/promises";
 import { extname, relative, resolve } from "node:path";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
@@ -13,12 +13,15 @@ interface Inventory {
 
 const MAX_ENTRIES = 5_000;
 
-function assertInsideWorkspace(cwd: string, requestedPath: string): string {
+async function assertInsideWorkspace(cwd: string, requestedPath: string): Promise<string> {
   const normalized = requestedPath.startsWith("@")
     ? requestedPath.slice(1)
     : requestedPath;
-  const target = resolve(cwd, normalized);
-  const fromWorkspace = relative(resolve(cwd), target);
+  const [workspaceRoot, target] = await Promise.all([
+    realpath(cwd),
+    realpath(resolve(cwd, normalized)),
+  ]);
+  const fromWorkspace = relative(workspaceRoot, target);
 
   if (fromWorkspace === ".." || fromWorkspace.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`)) {
     throw new Error(`Path must stay inside the workspace: ${requestedPath}`);
@@ -106,7 +109,7 @@ export default function customTools(pi: ExtensionAPI): void {
       { additionalProperties: false },
     ),
     async execute(_toolCallId, params, signal, _onUpdate, ctx) {
-      const target = assertInsideWorkspace(ctx.cwd, params.path ?? ".");
+      const target = await assertInsideWorkspace(ctx.cwd, params.path ?? ".");
       const result = await inventoryWorkspace(target, params.maxDepth ?? 2, signal);
       const display = {
         ...result,

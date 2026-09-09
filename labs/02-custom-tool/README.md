@@ -28,7 +28,7 @@ Read the new survival-guide sections on async functions, interfaces, optional pr
 [`tools.ts`](tools.ts) registers:
 
 - `structured_echo`, a deliberately trivial tool with a non-empty string and bounded repeat count.
-- `workspace_inventory`, a useful read-only tool that counts files, directories, and extensions without reading file contents. It stays inside the workspace, skips `.git` and `node_modules` recursion, limits depth to three, caps entries at 5,000, and cooperates with cancellation.
+- `workspace_inventory`, a useful read-only tool that counts files, directories, and extensions without reading file contents. It resolves symlinks before enforcing the workspace boundary, skips `.git` and `node_modules` recursion, limits depth to three, caps entries at 5,000, and cooperates with cancellation.
 
 Run both controlled cases:
 
