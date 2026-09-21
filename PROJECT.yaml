@@ -1,0 +1,22 @@
+schema_version: 1
+
+project:
+  name: harness-lab
+  title: Harness Lab
+  summary: Learning laboratory and experiment catalog for agent architectures built around Pi
+
+classification:
+  visibility: public
+  kind: research
+  stage: beta
+  status: active
+  version: 0.1.0
+
+workspace:
+  groups: []
+  preferred_machines: []
+
+documentation:
+  entrypoint: README.md
+  architecture: docs/architecture/repository-structure.md
+
